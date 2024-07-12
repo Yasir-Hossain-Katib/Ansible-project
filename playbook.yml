@@ -1,0 +1,8 @@
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Set up authorized_keys for the Ansible user
+      authorized_key:
+        user: username_on_target
+        state: present
+        key: "{{ lookup('file', '/home/ubuntu/.ssh/id_ed25519.pub') }}"
